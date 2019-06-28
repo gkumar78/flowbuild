@@ -5,4 +5,6 @@ for packet switching in Whitebox switches. It works as the northbound applicatio
 of ONOS project and uses its REST API for performing Create, Retreive and Delete
 operations for Flow Table, Group and Meter entries for the Switches managed
 by ONOS controller.
+
+![alt text](docs/images/integration_view.png "Integration View of Flowbuild")
  
