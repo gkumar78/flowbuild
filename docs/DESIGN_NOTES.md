@@ -15,13 +15,36 @@ This application will be a standalone Web application based on AngularJS UI fram
 
 AsMain objective of this application is to provide a convenient, intuitive Web-based Graphical interface to view & configure the Flows, Graphs and Meters for a switch using ONOS Rest API in the backend. In that context, following set of functional features would be supported by this application.
 
-### Flow Management
+### ONOS Connection and Login
 
 This mainly refers to functional views available on Web UI screens of application. Support for following operations is needed:
 
-* Login page with Username/Password. Credentials of backend ONOS should be used
-* View List of Switches managed by ONOS
-* View basic Details of Switch - as available from ONOS API Response
+#### Flowbuild Login page
+This should be the first Landing page of the application. It will list text-boxes for entering Username/Password and login button. Credentials of backend ONOS should be used to login into REST API of ONOS. An Error should be displayed in event of login failure and form should reset. On successful login, application should load Next page of Managed Switches.
+
+#### Managed Switches
+
+This page displays List of Switches managed by ONOS. It invokes the /devices REST API of ONOS to retrieve the list of managed switches and displays it in a table. Should show a warning "No Switches managed by ONOS" when devices REST API returns blank JSON.
+
+This page should list switches in a tabular form with columns covering following attribute of each switch
+* Name - pick from ```annotations``` -> ```name``` attribute in Json response
+* Openflow Id - ```id``` attribute
+* Device Type - ```driver``` attribute
+* Vendor - ```mfr``` attribute
+* Model - ```hw``` attribute
+* Software Version - ```sw``` attribute
+* Reachable - ```available``` attribute
+* Openflow Protocol - ```annotations``` -> ```protocol``` attribute
+* Last Update - ```humanReadableLastUpdate``` attribute
+
+Also, it should be able to determine the associated Profile of discovered switch based on device type and openflow version. One column should display the Profile of switch.
+
+The last column of Table would provide a single button 'Configure' to Open Switch Configuration page with default Flow management screen.
+
+### Flow Management
+
+This feature covers UI screens listed below to facilitate display and modification of Flow Entries for a managed switch.
+
 * View Flows configured on Switch
 * View details of flows configured on Switch (Table, Match fields, Priority, Timeout, Instructions, Counters, Cookie)
 * Delete configured flows
@@ -32,17 +55,37 @@ This mainly refers to functional views available on Web UI screens of applicatio
 
 Match fields to be displayed will be governed by the Profile associated with the Switch. When adding a flow, only those fields which are allowed as part of Match criteria for the profile are made available in UI screen. When displaying the match criteria, all retrieved match fields will be displayed in UI screen but those fields which are not part of associated profile will be displayed in RED.
 
-* Match fields - It Corresponds to criteria fields under selector element in ONOS API response. Match fields to be supported includes
-  * Input Port
-  * L2 header fields
-  * L3 header fields
-  * MPLS fields
+Flowbuild will allow configuring multiple match fields for a Flow Entry. Each match field will be composed of 2 parts,
+1. **Group** - The group/category (e.g. Packet Header) the field belongs to e.g. L2, L3, MPLS etc.
+2. **Field Name** - Descriptive Name of the field e.g. Ethernet Type, Source Port etc.
 
-The master list of allowed fields would be configurable as a yaml file in application configuration. It would match with allowed [Criteria.Type Enum values defined in ONOS API](http://api.onosproject.org/1.3.0/org/onosproject/net/flow/criteria/Criterion.Type.html) 
+While adding a new flow entry, user will be asked to first select a Group from the dropdown. Based on selected Group, the next dropdown of Field name will get populated. Please refer to [Match Fields page](MatchFields.md) for more details of supported match fields and their mapping to ONOS REST API JSON attributes. 
+
+#### Instructions
+
+As with Match Fields, Instructions to be displayed will be governed by the Profile associated with the Switch. When adding a flow, only those fields which are allowed as part of Instructions Action set for the profile are made available in UI screen. When displaying the Instructions, all retrieved action set fields will be displayed in UI screen but those action sets which are not part of associated profile will be displayed in RED.
+
+Further details to be added.
 
 ### Auto Discovery and Intelligence
 
-Further details to be added.
+In order to facilitate intuitive programming of Flow Entries leading to Processing Pipeline on managed switch, flowbuild application will implement following intelligent mechanisms to aid in correct configuration of individual flow entries.
+
+#### Semantic Validations based on Field Types
+
+This covers validation of mostly input text fields based on field type. Field type can be generic e.g.
+
+* Numeric - only integer numbers (within a range) are allowed in such fields. For example, Priority field in flow can be from 0 to 65535 only.
+* String - String value upto a maximum length are allowed in such fields.
+
+Other field to be supported are domain specific e.g.
+* IP Address - 
+* Ethernet MAC Address - 
+
+#### Validations based on Discovery
+
+
+
 
 ### Group Management
 
