@@ -75,17 +75,33 @@ In order to facilitate intuitive programming of Flow Entries leading to Processi
 
 This covers validation of mostly input text fields based on field type. Field type can be generic e.g.
 
-* Numeric - only integer numbers (within a range) are allowed in such fields. For example, Priority field in flow can be from 0 to 65535 only.
-* String - String value upto a maximum length are allowed in such fields.
+* Numeric - only integer numbers (within a range) are allowed in such fields. For example, Priority field in flow can have value from 0 to 65535 only. Also, tcp ports should also be between 0 to 65535 only.
+* String - String value upto a maximum length are allowed in such fields
+* HexString - Only Hex Strings upto a maximum length are allowed in such fields e.g. metatdata field in flow can be upto 64 hexadecimal bytes long.
+* Binary - Only Bit String (0 & 1) are allowed in this field upto a maximum length e.g. DSCN field in IP Header is of 6 bits.
 
 Other field to be supported are domain specific e.g.
-* IP Address - 
-* Ethernet MAC Address - 
+* IPv4 Address - For example, Destination IP Address field of IPv4 Header in Flow Match fields
+* MAC Address - For example, Destination MAC Address field of Ethernet Header in Flow Match fields
+
+Additionally, there are many fields which have only discrete values which would be configured as ENUM in flowbuild and a drop-down with all allowed values will be provided to User to select. Example of such fields are Ethernet Frame Type, ARP Operation Code etc.
 
 #### Validations based on Discovery
 
+Some of the input fields in flowbuild will perform validations based on currently discovered and configured status of network elements e.g. device, ports, flows etc. This will mostly be achieved by only showing the allowed values in a drop-down for user to select.
 
+Example of such fields include:
 
+* Input Physical Port - Flowbuild will retrieve and cache list of available physical ports for a device and only show them in a drop-down while adding Input Port as a Match Field during configuration of a new flow entry.
+* Out Port - Same as above
+* Action Group - Only list of configured Group Buckets will be shown when selecting the next Group as the Action set.
+
+#### Logical Validations
+
+Openflow specifications defines some specific rules which can be used to defined some additional validations to prevent the configuration of invalid Flow/Group entries by user which would anyway be denied by switch on API call. Such validations shall include:
+
+* Table Number - A Flow entry in a table should have go-to instruction pointing to higher number Table number only.
+* Flow Entry - A Table Miss entry (no match criteria) should be configured only with lowest Priority (0) otherwise it can override any valid flow entries. 
 
 ### Group Management
 
@@ -112,24 +128,4 @@ Refer to the <to be added> page for syntax and format of the profile file.
 ### Containerization
 
 Further details to be added.
-
-This application provides following Graphical Views for user operations
-
-## GUI Pages
-
-This application provides following Graphical Views for user operations:
-
-* Login page with Username/Password. Credentials of backend ONOS should be used
-* Home page - Lists option 'Switches' and 'Profiles' in the tab (top or left) to select the switch/profile to configure.
-  * On selection of Switch option, displays list of switches that are managed by underlying ONOS instance in a table. Clicking on Switch opens the Switch page. The basic details of switch i.e. dpid, management ip-address, type of switch, no of ports, connection time etc. are displayed in table.
-  * On selection of Profiles option, displays list of profiles that are configured in a table. Clicking on Profile opens the Profile page
-* Switch page - Displays basic information about switch. Lists option 'Flows' and 'Groups' in the tab (top or left) to select.
-  * On selection of Flows option, displays list of flows configured on the switch. The basic details of flow i.e. table number, management ip-address, type of switch, no of ports, connection time etc. are displayed in table.
-  * To be added
-
-
-
-
-## Session Management
-
 
