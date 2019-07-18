@@ -1,0 +1,22 @@
+
+
+<div data-ng-init="getOnos()">
+SWITCHES FROM ONOS :
+	<br>
+<table  border="1">
+    <tr>
+	<th>Select</th>
+	<th ng-repeat="(key, val) in greeting[0]">{{key}}</th>
+    </tr>
+  <tr ng-repeat="row in greeting">
+    <div class="radio">
+	<label>
+        <td>
+	    <button ng-model="selectedRow" id='express' name="optradio" ng-value='row.id'  ng-click='getFlows(row.id)'> Configure Flows </button>
+	</td>
+        <td ng-repeat="column in row">{{ column }}</td>
+    </label>
+   </div>
+  </tr>
+</table>  
+</div>

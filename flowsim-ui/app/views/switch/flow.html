@@ -1,0 +1,26 @@
+
+<div class="modal-header">
+  <h3 class="modal-title">
+    Flow: Priority {{priority}}
+  </h3>
+</div>
+<div class="modal-body">
+
+  <!-- Match Set Controls -->
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+      <h4>Match Set</h4>
+    </div>
+    <fg-match profiles="matchProfiles" config="match"></fg-match>
+  </div>
+  <!-- End of - Match Set Controls -->
+  <fg-instruction set="instruction" match="match" caps="caps"></fg-instruction>
+
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()">Ok</button>
+  <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+</div>
+

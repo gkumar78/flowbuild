@@ -1,0 +1,45 @@
+.ext-pack-header {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: linear-gradient(to left, white 50%, lightgray 50%);
+    background-size: 200% 100%;
+    background-position:right bottom;
+    transition:all 2s ease;
+}
+.ext-pack-header-vis {
+    background-position:left bottom;
+}
+.ext-container {
+    display: table;
+}
+.ext-row {
+    display: table-row;
+}
+.ext-left, .ext-middle {
+    display: table-cell;
+    position: relative;
+}
+.ext-connect {
+    position: absolute;
+    border: 2px solid #c0224e;
+    border-width: 0 0 2px 2px;
+    right: 0;
+    top: -12px;
+}
+.ext-main {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ext-pack-left{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.ext-pack-right{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

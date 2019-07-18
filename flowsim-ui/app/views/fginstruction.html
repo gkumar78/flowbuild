@@ -1,0 +1,75 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Instruction Set</h4>
+    <span ng-repeat="ins in instructionProfile">
+      <button type="button" class="btn btn-xs btn-default"
+              tooltip="{{'Add/Remove '+ins.name}}"
+              ng-show="ins.enabled"
+              ng-click="active.index = active.index === $index ? -1 : active.index; setEnabled(ins.name)" 
+              ng-class="{'btn-primary': isEnabled(ins.name) }">
+        {{ins.name}}
+      </button>
+    </span>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="list-group">
+        <li class="list-group-item" tooltip="{{set.meter.tip}}" ng-class="{'active': active.index === 0}"
+          ng-show="set.meter.enabled"  ng-click="active.index = 0">
+          {{set.meter.name}}
+        </li>
+        <li class="list-group-item" tooltip="{{set.apply.tip}}" ng-class="{'active': active.index === 1}"
+          ng-show="set.apply.enabled"  ng-click="active.index = 1">
+          {{set.apply.name}}
+        </li>
+        <li class="list-group-item" tooltip="{{set.clear.tip}}" ng-class="{'active': active.index === 2}"
+          ng-show="set.clear.enabled"  ng-click="active.index = 2">
+          {{set.clear.name}}
+        </li>
+        <li class="list-group-item" tooltip="{{set.write.tip}}" ng-class="{'active': active.index === 3}"
+          ng-show="set.write.enabled"  ng-click="active.index = 3">
+          {{set.write.name}}
+        </li>
+        <li class="list-group-item" tooltip="{{set.metadata.tip}}" ng-class="{'active': active.index === 4}"
+          ng-show="set.metadata.enabled"  ng-click="active.index = 4">
+          {{set.metadata.name}}
+        </li>
+        <li class="list-group-item" tooltip="{{set.goto_.tip}}" ng-class="{'active': active.index === 5}"
+          ng-show="set.goto_.enabled"  ng-click="active.index = 5">
+          {{set.goto_.name}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <div ng-show="active.index === 0">
+        <br>
+        <fg-meter-config meter="set.meter"/>
+      </div>
+      <div ng-show="active.index === 1">
+        <fg-apply-actions toplevel="instructionProfile[1].profiles.profiles" 
+                          match="match.set"
+                          actions="set.apply.actions">
+        </fg-apply-actions>
+      </div>
+      <div ng-show="active.index === 2">
+        <h3>Clear the Action Set</h3>
+      </div>
+      <div ng-show="active.index === 3">
+        <fg-write-actions toplevel="instructionProfile[3].profiles.profiles" 
+                          match="match.set"
+                          actionset="set.write.actions">
+        </fg-write-actions>
+      </div>
+      <div ng-show="active.index === 4">
+        <br>
+        <fg-metadata-config metadata="set.metadata" caps="caps.instruction.metadata"/>
+      </div>
+      <div ng-show="active.index === 5">
+        <br>
+        <fg-goto-config goto="set.goto_" caps="caps"/>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,73 @@
+
+<div class="row" >
+<!-- transclude the list title -->
+  <div class="col-md-2">
+    <fg-list category="switch" on-add="addSwitch" on-del="delSwitch" on-set="setSwitch"
+             on-init="getSwitches"> 
+      Switches 
+	  <br>
+	<!-- <button analytics-on="click" class="btn btn-default" type="submit"
+             ng-click="getOnos()">
+			 Get Devices Info
+	</button>
+	<br>
+<table  border="1">
+    <tr>
+	<th>Select</th>
+	<th ng-repeat="(key, val) in greeting[0]">{{key}}</th>
+    </tr>
+  <tr ng-repeat="row in greeting">
+    <div class="radio">
+	<label>
+        <td>
+	    <button ng-model="selectedRow" id='express' name="optradio" ng-value='row.id'  ng-click='getFlows(row.id)'> Configure Flows </button>
+	</td>
+        <td ng-repeat="column in row">{{ column }}</td>
+    </label>
+   </div>
+  </tr>
+</table> --> 
+
+
+ <br>
+	<br>
+	<table  border="1">
+    <tr>
+	<th>Select</th>
+	<th ng-repeat="(key, val) in flows[0]">{{key}}</th>
+    </tr>
+  <tr ng-repeat="row in flows">
+    <div class="radio">
+	<label>
+        <td>
+	     <input ng-model="selectedflow" type="radio" id='express' name="optradio" ng-value='row.id' ng-change='selectedFlowShow(row.id)'>
+	</td>
+        <td ng-repeat="column in row">{{ column }}</td>
+    </label>
+   </div>
+  </tr>
+</table>  
+	
+<button analytics-on="click" class="btn btn-default" type="submit"
+             ng-click="deleteFlows()">
+			 Delete Flows
+	</button>
+	<br><br> 
+
+<!-- <button analytics-on="click" class="btn btn-default" type="submit"
+             ng-click="addFlows()">
+			 Add Flows
+	</button>-->
+
+      <div class="error" ng-show="errorMsg.length">
+        {{errorMsg}}
+      </div>
+    </fg-list>
+  </div>
+
+  <div class="col-md-10">
+    <div ui-view="config"></div>
+  </div>
+
+</div>
+

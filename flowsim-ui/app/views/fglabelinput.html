@@ -1,0 +1,11 @@
+
+<div class="input-group input-group-sm" 
+     ng-class="{'has-error': !field.testStr(str)}">
+     <!--ng-show="item.visible">-->
+     <span class="input-group-addon" tooltip="{{field.tip}}" 
+       tooltip-popup-delay='1000' style="width:100px">
+    {{item.name}}
+  </span>
+  <input type="text" class="form-control" ng-model="str" ng-change="updateValue()">
+</div>
+

@@ -1,0 +1,48 @@
+
+<div class="modal-header">
+  <h3 class="modal-title">{{tableName+'('+tableId+')'}} - Match Capabilities</h3>
+</div>
+<div class="modal-body">
+
+  <table class="table table-striped">
+    <thead>
+      <th>Protocol</th>
+      <th>Field</th>
+      <th>Enabled</th>
+      <th>Wildcardable</th>
+      <th>Maskable</th>
+      <th>Mask</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="profile in match.profiles">
+        <td>{{profile.protocol}}</td>
+        <td><div tooltip="{{profile.tip}}">{{profile.field}}</div></td>
+        <td><input type="checkbox" ng-model="profile.enabled"
+                   tooltip="{{profile.enabledTip}}"></td>
+        <td><input type="checkbox" ng-model="profile.wildcardable" 
+                   ng-disabled="!profile.enabled"
+                   tooltip="{{profile.wildcardableTip}}"></td>
+        <td><input type="checkbox" ng-model="profile.maskable"
+                   ng-disabled="!profile.enabled"
+                   tooltip="{{profile.maskableTip}}"></td>
+        <td>
+          <div ng-class="{'has-error':
+               profile.enabled && profile.maskable &&
+               profile.maskableBits.length > 0 && 
+               !profile.maskableBitsTest(profile.maskableBits)}">
+            <input class="form-control" type="text" 
+                   ng-model="profile.maskableBits" style="width:150px" 
+                   tooltip="{{profile.maskableBitsTip}}"
+                   ng-disabled="!profile.maskable ||!profile.enabled">
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()">Ok</button>
+  <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+</div>
+

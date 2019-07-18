@@ -1,0 +1,139 @@
+<br>
+<fg-feature-notice msg="The groups profile feature is targeted for a future release.">
+<div class="row">
+  <div class="col-md-5">
+    <div class="form-group"
+      ng-class="{'has-error':tests.Groups.max_groups(profile.groups.max_groups)}">
+        <div class="input-group">
+            <div class="input-group-addon" tooltip="{{tips.Groups.max_groups}}">
+              Max Groups:
+            </div>
+            <input class="form-control" type="text" style="max-width:100px"
+                  ng-model="profile.groups.max_groups">
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5">
+        <div class="input-group">
+          <label tooltip="{{tips.Groups.stats}}">
+            <input type="checkbox" ng-model="profile.groups.stats">
+            Group Stats
+          </label>
+        </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Supported Group Types</h3>
+      </div>
+      <div class="panel-body">
+        <div class="checkbox-inline">
+          <label tooltip="{{tips.Groups.all}}">
+            <input type="checkbox" ng-model="profile.groups.all">
+            All
+          </label>
+        </div>
+        <div class="checkbox-inline">
+          <label tooltip="{{tips.Groups.select}}">
+            <input type="checkbox" ng-model="profile.groups.select">
+            Select
+          </label>
+        </div>
+        <div class="checkbox-inline">
+          <label tooltip="{{tips.Groups.indirect}}">
+            <input type="checkbox" ng-model="profile.groups.indirect">
+            Indirect
+          </label>
+        </div>
+        <div class="checkbox-inline">
+          <label tooltip="{{tips.Groups.fastfailover}}">
+            <input type="checkbox" ng-model="profile.groups.fastfailover">
+            Fast Failover
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Supported Capabilities</h3>
+      </div>
+      <div class="panel-body">
+        <div class="checkbox-inline">
+          <label tooltip="{{tips.Groups.select_weight}}">
+            <input type="checkbox"
+            ng-model="profile.groups.select_weight"
+              ng-disabled="!profile.groups.select">
+            Select Weight
+          </label>
+        </div>
+        <div class="checkbox-inline">
+          <label tooltip="{{tips.Groups.select_liveness}}">
+            <input type="checkbox" ng-model="profile.groups.select_liveness"
+              ng-disabled="!profile.groups.select">
+            Select Liveness
+          </label>
+        </div>
+        <div class="checkbox-inline">
+          <label tooltip="{{tips.Groups.chaining}}">
+            <input type="checkbox" ng-model="profile.groups.chaining"
+              ng-disabled="!profile.groups.fastfailover">
+            Chaining
+          </label>
+        </div>
+        <div class="checkbox-inline">
+          <label tooltip="{{tips.Groups.chaining_checks}}">
+            <input type="checkbox" ng-model="profile.groups.chaining_checks"
+               ng-disabled="!profile.groups.fastfailover">
+            Chaining Checks
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4 tooltip="{{tips.Groups.supportedActions}}">Supported Actions</h4>
+<div class="row">
+    <div class="col-md-5">
+      <accordion>
+        <accordion-group ng-repeat="proto in profile.groups.actions" ng-show="$index < profile.groups.actions.length / 2"
+            heading="{{proto.protocol}}">
+          <div class="list-group">
+            <div ng-repeat="field in proto.fields" class="list-group-item">
+              {{field.name}}
+              <div class="pull-right">
+                <input type="checkbox" class="pull-right" ng-model="field.value">
+              </div>
+            </div>
+          </div>
+        </accordion-group>
+      </accordion>
+    </div>
+    <div class="col-md-5">
+      <accordion>
+        <accordion-group ng-repeat="proto in profile.groups.actions" ng-show="$index >= profile.groups.actions.length / 2"
+            heading="{{proto.protocol}}">
+          <div class="list-group">
+            <div ng-repeat="field in proto.fields" class="list-group-item">
+              {{field.name}}
+              <div class="pull-right">
+                <input type="checkbox" class="pull-right" ng-model="field.value">
+              </div>
+            </div>
+          </div>
+        </accordion-group>
+      </accordion>
+    </div>
+</div>
+</fg-feature-notice>

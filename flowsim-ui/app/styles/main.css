@@ -1,0 +1,123 @@
+
+/* Space out content a bit */
+body {
+  padding-top: 60px;
+  padding-bottom: 20px;
+}
+
+div.error { color: red; font-weight: bold; }
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+.fg-dl-row {
+  height: 20px;
+}
+
+.fg-dl-horizontal {
+
+}
+
+.fg-dl-horizontal dt {
+  float: left;
+  margin-left: 0px;
+  margin-right: 5px;
+  text-align: right;
+  white-space: nowrap;
+  clear: left;
+}
+.fg-dl-horizontal dd {
+  float: left;
+}
+
+.fg-debug {
+  background: white;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.fgglyph {
+  font-size: .75 em;
+}
+
+.fgtip {
+  font-size: .45 em;
+  font-style: italic;
+}
+/*
+ * Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+/* start Password strength bar style */
+ul#strength {
+  display:inline;
+  list-style:none;
+  margin:0;
+  margin-left:15px;
+  padding:0;
+  vertical-align:2px;
+}
+
+.point:last {
+  margin:0 !important;
+}
+.point {
+  background:#DDD;
+  border-radius:2px;
+  display:inline-block;
+  height:5px;
+  margin-right:1px;
+  width:20px;
+}
+/* end Password strength bar style */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

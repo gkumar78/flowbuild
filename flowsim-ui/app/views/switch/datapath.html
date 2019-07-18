@@ -1,0 +1,131 @@
+
+<br>
+
+<div class="row">
+  <div class="col-md-6">
+    
+    <dl class="dl-horizontal">
+      <dt>Datapath Id</dt>
+      <dd>{{device.datapath.capabilities.datapath_id}}</dd>
+      <dt>Buffer Count</dt>
+      <dd>{{device.datapath.capabilities.n_buffers}}</dd>
+    </dl>
+
+     <div class="form-group"
+       ng-class="{'has-error':
+       !metadata.tests.Datapath.miss_send_len(device.datapath.miss_send_len)}">
+       <div class="input-group">
+         <div class="input-group-addon" style="width:110px"
+           tooltip="{{metadata.tips.Datapath.miss_send_len}}">
+           Miss Send Length
+         </div>
+         <input class="form-control" type="text" style="width:200px"
+         ng-model="device.datapath.miss_send_len" ng-change="setDirty()">
+       </div>
+     </div>
+
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Fragmentation Handling</h3>
+      </div>
+      <div class="panel-body">
+        <div class="radio">
+          <label>
+            <input type="radio" name="fragHandling"
+                   ng-model="device.datapath.fragHandling"
+                   ng-value="'Normal'"
+                   ng-disabled="!device.datapath.capabilities.ip_reassembly"
+                   ng-change="setDirty()">
+            Normal
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="fragHandling"
+                   ng-model="device.datapath.fragHandling"
+                   ng-value="'Drop'"
+                   ng-disabled="!device.datapath.capabilities.ip_reassembly"
+                   ng-change="setDirty()">
+            Drop
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="fragHandling"
+                   ng-model="device.datapath.fragHandling"
+                   ng-value="'Reassemble'"
+                   ng-disabled="!device.datapath.capabilities.ip_reassembly"
+                   ng-change="setDirty()">
+            Reassemble
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon" style="width:200px"
+             tooltip="{{tips.Datapath.mfr_description}}">
+          Manufacturer description
+        </div>
+        <textarea class="form-control" rows="3" style="width:300px"
+                  ng-model="device.datapath.capabilities.mfr_description"
+                  ng-disabled="true"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon" style="width:200px"
+             tooltip="{{tips.Datapath.hw_description}}">
+          Hardware description
+        </div>
+        <textarea class="form-control" rows="3" style="width:300px"
+                  ng-model="device.datapath.capabilities.hw_description"
+                  ng-disabled="true"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon" style="width:200px"
+          tooltip="{{tips.Datapath.sw_description}}">
+          Software description</div>
+        <textarea class="form-control" rows="3" style="width:300px"
+                  ng-model="device.datapath.capabilities.sw_description"
+                  ng-disabled="true"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon" style="width:200px"
+             tooltip="{{tips.Datapath.serial_num}}">
+          Serial Number</div>
+        <input class="form-control" type="text" style="width:300px"
+               ng-model="device.datapath.capabilities.serial_num"
+               ng-disabled="true">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon" style="width:200px"
+             tooltip="{{tips.Datapath.dp_description}}">
+          Dataplane description
+        </div>
+        <textarea class="form-control" rows="3" style="width:300px"
+                  ng-model="device.datapath.capabilities.dp_description"
+                  ng-disabled="true"></textarea>
+      </div>
+    </div>
+
+  </div>
+</div>
