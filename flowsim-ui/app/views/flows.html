@@ -1,0 +1,68 @@
+
+<div class="row" >
+<!-- transclude the list title -->
+  <div class="col-md-2">
+    <!--<fg-list category="switch" on-add="addSwitch" on-del="delSwitch" on-set="setSwitch"
+             on-init="getSwitches"> -->
+      
+<div data-ng-init = "getFlows()">
+<h4>Flows</h4>
+	  <br>
+	<table class="table table-striped ng-scope  border="3">
+    <tr ng-if= "flows">
+	
+		<th>Table</th>
+		<th>Priority</th>
+		<th>Match Fields</th>
+		<th>Timeout</th>
+		<th>Instruction</th>
+		<th>Packet / Bytes</th>
+		<th></th>
+	<!--<th ng-repeat="(key, val) in flows[0]">{{key}}</th> -->
+    </tr>
+  <tr ng-repeat="row in flows">
+    <div class="radio">
+	<label>
+       <!-- <td>
+	     <input ng-model="selectedflow" type="radio" id='express' name="optradio" ng-value='row.id' ng-change='selectedFlowShow(row.id)'>
+	</td> -->
+	
+		<td>{{row.tableId}}</td>
+		<td>{{row.priority}}</td>
+		<td>{{row.selector.criteria}}</td>
+		<td>{{row.timeout}}</td>
+		<td>{{row.treatment.instructions}}</td>
+		<td>{{row.packets}} / {{row.bytes}}</td>
+		<td><button style="height:30px;width:100px" analytics-on="click" class="btn btn-success" type="submit"
+             ng-click="deleteFlows(row.id)">
+			 Delete Flow
+	</button></td>
+        <!--<td ng-repeat="column in row">{{ column }}</td> -->
+    </label>
+   </div>
+  </tr>
+</table>  
+
+
+</div>
+	<br>
+	<br>
+
+	<br><br> 
+
+<!-- <button analytics-on="click" class="btn btn-default" type="submit"
+             ng-click="addFlows()">
+			 Add Flows
+	</button>-->
+
+      <div class="error" ng-show="errorMsg.length">
+        {{errorMsg}}
+      </div>
+    </fg-list>
+  </div>
+
+ <!-- <div class="col-md-10">
+    <div ui-view="config"></div>
+  </div>-->
+
+</div>

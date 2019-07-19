@@ -104,6 +104,27 @@ angular
 
 
 
+.state('flows', {
+        url: '/flows',
+        resolve: {
+          switchList: function(fgStore){
+            return fgStore.get('switches').then(function(names){
+              return names;
+            });
+          }
+        },
+        views: {
+          '': {
+            templateUrl: 'views/flows.html',
+            controller: 'SwitchCtrl'
+          },
+          'config@switch': {
+            template: '<ui-view/>'
+          }
+        }
+      })
+
+
 .state('switches', {
         url: '/switches',
         resolve: {
@@ -123,6 +144,8 @@ angular
           }
         }
       })
+
+
 
 
 

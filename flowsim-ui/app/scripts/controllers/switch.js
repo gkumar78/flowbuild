@@ -36,7 +36,6 @@ angular.module('flowsimUiApp')
 					}).success(function(response){
 						console.log(response);
 						$scope.greeting = response.devices;
-						alert("login Successfully");
 					}).error(function(error){
 						console.log(error);
 						alert("login error");
@@ -44,13 +43,17 @@ angular.module('flowsimUiApp')
 	
 	};
        $scope.selectedRowShow = function(value) {
-		   console.log(value);
+					   console.log(value);
 		   deviceId = value;
 		   var str1="of%3A";
                    var str2 = value;
                    str3 = str1.concat(str2.substr(3));
                    console.log(str3);
-				   
+			localStorage.setItem('deviceId', str3);
+			$location.path('/flows');
+                        //$location.path('/fgtabs');
+
+			$route.reload();
                   
  	};	
 	
@@ -64,15 +67,11 @@ angular.module('flowsimUiApp')
 	
 	
 	
-	   $scope.getFlows = function(value) {
-		   $location.path('/switch');
-           $route.reload();
-		   deviceId = value;
-		   var str1="of%3A";
-           var str2 = value;
-           str3 = str1.concat(str2.substr(3));
+	   $scope.getFlows = function() {
+		  
+			var deviceId= localStorage.getItem('deviceId');
 			     
-			var urll = "http://10.177.125.6:8181/onos/v1/flows/".concat(str3);
+			var urll = "http://10.177.125.6:8181/onos/v1/flows/".concat(deviceId);
 			console.log(urll);	
 			 $http({
 				 
@@ -85,16 +84,16 @@ angular.module('flowsimUiApp')
 					}).success(function(data){
 						console.log(data.flows);
 						$scope.flows = data.flows;
-						alert("login Successfully");
+						alert("Flows for DeviceId : " + deviceId);
 					}).error(function(error){
 						console.log(error);
-						alert("login error");
+						alert("Error in getting Flows");
 					})
 	}; 
 	
 	$scope.deleteFlows = function() {
-			
-			var deleteUrl = ((("http://10.177.125.6:8181/onos/v1/flows/".concat(str3)).concat("/")).concat(flowId));
+			var deviceId= localStorage.getItem('deviceId');
+			var deleteUrl = ((("http://10.177.125.6:8181/onos/v1/flows/".concat(deviceId)).concat("/")).concat(flowId));
 			console.log(deleteUrl);	
 			 $http({
 				 

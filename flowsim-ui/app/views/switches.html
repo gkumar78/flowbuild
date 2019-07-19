@@ -1,20 +1,48 @@
 
 
 <div data-ng-init="getOnos()">
+<h3>
+<span class="label label-default">
 SWITCHES FROM ONOS :
+</span>
+</h3>
+
 	<br>
-<table  border="1">
-    <tr>
+<table class="table table-bordered"  border="2">
+   <!-- <tr>
 	<th>Select</th>
 	<th ng-repeat="(key, val) in greeting[0]">{{key}}</th>
-    </tr>
+    </tr> -->
+	<tr ng-if= "greeting">
+		
+		<th>Name</th>
+		<th>OpenFlowID</th>
+		<th>DeviceType</th>
+		<th>Vendor</th>
+		<th>Model</th>
+		<th>Software Version</th>
+		<th>Reachable</th>
+		<th>Protocol</th>
+		<th>Last Updated</th>	
+		<th></th>
+	</tr>
   <tr ng-repeat="row in greeting">
     <div class="radio">
 	<label>
-        <td>
-	    <button ng-model="selectedRow" id='express' name="optradio" ng-value='row.id'  ng-click='getFlows(row.id)'> Configure Flows </button>
-	</td>
-        <td ng-repeat="column in row">{{ column }}</td>
+        
+        <!-- <td ng-repeat="column in row">{{ column }}</td> -->
+		<td>{{row.annotations.name}}</td>
+		<td>{{row.id}}</td>
+		<td>{{row.driver}}</td>
+		<td>{{row.mfr}}</td>
+		<td>{{row.hw}}</td>
+		<td>{{row.sw}}</td>
+		<td>{{row.available}}</td>
+		<td>{{row.annotations.protocol}}</td>
+		<td>{{row.humanReadableLastUpdate}}</td>
+		<td>
+			<button style="height:30px;width:120px ng-model="selectedRow" class="btn btn-success" id='express' name="optradio" ng-value='row.id'  ng-click='selectedRowShow(row.id)'> Configure Flows </button>
+		</td>
     </label>
    </div>
   </tr>
