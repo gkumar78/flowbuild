@@ -50,9 +50,17 @@ Flowbuild GUI (L2 Header, Ethernet Type) --->  ONOS REST API (ETH_TYPE, ethType)
 Following table lists the match fields that should be supported by Flowbuild application along with their mappings to ONOS REST API 
 and Openflow Match fields (for Openflow version 1.3.4).
 
-| Flowbuild Group           | Flowbuild Field Name     | ONOS type      | ONOS value key     | Openflow Match field Enum     |
-| ------------------------- | ------------------------ | -------------- | ------------------ | ----------------------------- |
-|                           | Input Port               | IN_PORT        | port               | OFPXMT_OFB_IN_PORT            |
-|  Ethernet Header          | Destination MAC          | ETH_DST        | mac                | OFPXMT_OFB_ETH_DST            |
-|  IPv4 Header              | Source IP Address        | IPV4_SRC       | ip                 | OFPXMT_OFB_IPV4_SRC           |
-|  Transport Header         | TCP Source Port          | TCP _SRC       | tcpPort            | OFPXMT_OFB_TCP_SRC            |
+| Flowbuild Group      | Flowbuild Field Name     | ONOS type  | ONOS value key | ONOS Type | Openflow Match field Enum     |
+| -------------------- | ------------------------ | ---------- | -------------- | --------- | ----------------------------- |
+|  Switch Internal     | Input Port               | IN_PORT    | port           | int       | OFPXMT_OFB_IN_PORT            |
+|  Switch Internal     | Input Physical Port      | IN_PHY_PORT| port           | int       |                               |
+|  Ethernet Header     | Source MAC               | ETH_SRC    | mac            | string    | OFPXMT_OFB_ETH_SRC            |
+|  Ethernet Header     | Destination MAC          | ETH_DST    | mac            | string    | OFPXMT_OFB_ETH_DST            |
+|  Ethernet Header     | Ether Type               | ETH_TYPE   | ethType        | string    |                               |
+|  Ethernet Header     | VLAN Id                  | VLAN_VID   | vlanId         | int       |                               |
+|  IPv4 Header         | Source IP Address        | IPV4_SRC   | ip             | string    | OFPXMT_OFB_IPV4_SRC           |
+|  IPv4 Header         | Destination IP Address   | IPV4_DST   | ip             | string    | OFPXMT_OFB_IPV4_DST           |
+|  IPv4 Header         | IP Protocol              | IP_PROTO   | protocol       | int       |                               |
+|  Transport Header    | TCP Source Port          | TCP_SRC    | tcpPort        | int       | OFPXMT_OFB_TCP_SRC            |
+|  Transport Header    | TCP Destination Port     | TCP_DST    | tcpPort        | int       | OFPXMT_OFB_TCP_DST            |
+|  Transport Header    | TCP Flags                | TCP_FLAGS  | flags          | int       |                               |
